@@ -2,7 +2,7 @@
 
 #include "bq/graphics/index_buffer.hpp"
 
-bq::index_buffer::index_buffer(const unsigned* data, unsigned count): m_count(count)
+bq::index_buffer::index_buffer(const unsigned* data, unsigned count): m_count(count), m_data(data)
 {
 	glGenBuffers(1, &m_id);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id);

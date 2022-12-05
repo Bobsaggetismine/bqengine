@@ -17,51 +17,76 @@
 
 
 
-bq::gl_renderer_2d::gl_renderer_2d(glm::mat4x4* camera): m_default_shader("res/shaders/basic_shader.shader"),m_camera(camera) {
+bq::gl_renderer_2d::gl_renderer_2d(glm::mat4x4* camera) : m_default_shader("res/shaders/basic_shader.shader"), m_camera(camera), m_current_texture_id(0) 
+{
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
-void bq::gl_renderer_2d::set_quad_vertices(const glm::vec2& pos, const glm::vec2& size) {
-    m_quad_vertices[0] = pos.x;
-    m_quad_vertices[1] = pos.y;
-    m_quad_vertices[4] = pos.x;
-    m_quad_vertices[5] = pos.y + size.y;
-    m_quad_vertices[8] = pos.x + size.x;
-    m_quad_vertices[9] = pos.y + size.y;
-    m_quad_vertices[12] = pos.x + size.x;
-    m_quad_vertices[13] = pos.y;
-}
-
-void bq::gl_renderer_2d::clear() const
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-}
-void bq::gl_renderer_2d::render(const bq::texture& tx, const bq::vertex_array& va, const bq::index_buffer& ib)
-{
-    tx.bind();
-    m_default_shader.set_uniform_1i("u_Texture", 0);
-    m_default_shader.set_uniform_mat4f("u_MVP", *m_camera);
-    m_default_shader.bind();
     
-    va.bind();
-    ib.bind();
-    glDrawElements(GL_TRIANGLES, ib.count(), GL_UNSIGNED_INT, nullptr);
+    int texcoords[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 };
+    m_default_shader.set_uniform_1iv("u_Textures", 32, texcoords);
 }
-
-void bq::gl_renderer_2d::render_quad(const glm::vec2& pos, const glm::vec2& size, const bq::texture& texture) {
-    
-    set_quad_vertices(pos, size);
-
-
-    bq::vertex_array va;
-    bq::vertex_buffer vb(m_quad_vertices, 4 * 4 * sizeof(float));
-    bq::index_buffer ib(m_default_quad_indices, 6);
+void bq::gl_renderer_2d::begin_batch()
+{
+    clear();
+}
+void bq::gl_renderer_2d::end_batch()
+{
+    bq::vertex_array  va;
+    bq::vertex_buffer vb(&m_quad_vertices[0], m_quad_vertices.size() * sizeof(float));
+    bq::index_buffer  ib(&m_quad_indices[0], m_quad_indices.size());
 
     bq::vertex_buffer_layout layout;
     layout.add_float(2);
     layout.add_float(2);
+    layout.add_float(1);
     va.add_buffer(vb, layout);
 
-    render(texture, va, ib);
+    render(va, ib);
+
+
+    m_quad_vertices.clear();
+    m_quad_indices.clear();
+    m_current_texture_id = 0;
+}
+void bq::gl_renderer_2d::clear() const
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+void bq::gl_renderer_2d::render_quad(const glm::vec2& pos, const glm::vec2& size, const bq::texture& texture) {
+    
+    add_quad(pos, size, texture);
+}
+
+
+void bq::gl_renderer_2d::unbind_textures()
+{
+}
+void bq::gl_renderer_2d::render(const bq::vertex_array& va, const bq::index_buffer& ib)
+{
+    ib.bind();
+    va.bind();
+    
+    
+
+    m_default_shader.bind();
+    
+    
+    m_default_shader.set_uniform_mat4f("u_MVP", *m_camera);
+    
+    glDrawElements(GL_TRIANGLES, ib.count(), GL_UNSIGNED_INT, nullptr);
+}
+void bq::gl_renderer_2d::add_quad(const glm::vec2& pos, const glm::vec2& size, const bq::texture& texture)
+{
+    texture.bind(m_current_texture_id);
+    unsigned current_size = m_quad_vertices.size() / 5;
+    
+    m_quad_vertices.insert(m_quad_vertices.end(), { pos.x,          pos.y,            0.0f, 0.0f, m_current_texture_id });
+    m_quad_vertices.insert(m_quad_vertices.end(), { pos.x,          pos.y + size.y,   0.0f, 1.0f, m_current_texture_id });
+    m_quad_vertices.insert(m_quad_vertices.end(), { pos.x + size.x, pos.y + size.y,   1.0f, 1.0f, m_current_texture_id });
+    m_quad_vertices.insert(m_quad_vertices.end(), { pos.x + size.x, pos.y,            1.0f, 0.0f, m_current_texture_id });
+    
+    m_quad_indices.insert(m_quad_indices.end(), { 0 + current_size, 1 + current_size, 2 + current_size });
+    m_quad_indices.insert(m_quad_indices.end(), { 2 + current_size, 3 + current_size, 0 + current_size });
+
+    m_current_texture_id+=1;
 }

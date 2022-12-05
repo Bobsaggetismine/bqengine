@@ -7,6 +7,7 @@ namespace bq {
     {
     private:
         unsigned int m_id;
+
         std::string m_filePath;
         int m_width, m_height, m_bitsPerPixel;
 
