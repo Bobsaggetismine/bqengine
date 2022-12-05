@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\bq">
+      <UniqueIdentifier>{EB43B8DA-D7FB-F927-4003-D3832CDA9418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\bq\graphics">
+      <UniqueIdentifier>{AB409586-17A2-7294-A00F-B9460C70A953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\bq\math">
+      <UniqueIdentifier>{C45F16BF-30EB-8383-39FC-0678A506E083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\bq">
+      <UniqueIdentifier>{B82810F6-2493-C46C-6DD1-7512D97AA2C1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\bq\graphics">
+      <UniqueIdentifier>{18DC83F9-04C0-444F-6D20-3FA259232FD1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\bq.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\gl_renderer_2d.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\index_buffer.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\shader.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\texture.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\vertex_array.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\vertex_buffer.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\vertex_buffer_layout.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\graphics\window.hpp">
+      <Filter>include\bq\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bq\math\vec.hpp">
+      <Filter>include\bq\math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\bq\graphics\gl_renderer_2d.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\index_buffer.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\shader.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\stbi.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\texture.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\vertex_array.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\vertex_buffer.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\vertex_buffer_layout.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bq\graphics\window.cpp">
+      <Filter>source\bq\graphics</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
