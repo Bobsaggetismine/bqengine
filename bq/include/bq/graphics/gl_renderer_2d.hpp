@@ -13,11 +13,10 @@ namespace bq {
         std::vector<unsigned> m_quad_indices;
         
         glm::mat4x4* m_camera;
-        bq::shader m_default_shader;
 
+        bq::shader m_default_shader;
   
         void add_quad(const glm::vec2& pos, const glm::vec2& size, const bq::texture& texture);
-        void unbind_textures();
         void render(const bq::vertex_array& va, const bq::index_buffer& ib);
 
     public:

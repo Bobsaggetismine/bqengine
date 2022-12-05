@@ -22,7 +22,7 @@ bq::gl_renderer_2d::gl_renderer_2d(glm::mat4x4* camera) : m_default_shader("res/
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    int texcoords[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 };
+    int texcoords[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
     m_default_shader.set_uniform_1iv("u_Textures", 32, texcoords);
 }
 void bq::gl_renderer_2d::begin_batch()
@@ -31,9 +31,9 @@ void bq::gl_renderer_2d::begin_batch()
 }
 void bq::gl_renderer_2d::end_batch()
 {
-    bq::vertex_array  va;
-    bq::vertex_buffer vb(&m_quad_vertices[0], m_quad_vertices.size() * sizeof(float));
-    bq::index_buffer  ib(&m_quad_indices[0], m_quad_indices.size());
+    bq::vertex_array va;
+    bq::vertex_buffer vb(m_quad_vertices.data(), m_quad_vertices.size() * sizeof(float));
+    bq::index_buffer ib(m_quad_indices.data(), m_quad_indices.size());
 
     bq::vertex_buffer_layout layout;
     layout.add_float(2);
@@ -42,7 +42,6 @@ void bq::gl_renderer_2d::end_batch()
     va.add_buffer(vb, layout);
 
     render(va, ib);
-
 
     m_quad_vertices.clear();
     m_quad_indices.clear();
@@ -58,15 +57,10 @@ void bq::gl_renderer_2d::render_quad(const glm::vec2& pos, const glm::vec2& size
 }
 
 
-void bq::gl_renderer_2d::unbind_textures()
-{
-}
 void bq::gl_renderer_2d::render(const bq::vertex_array& va, const bq::index_buffer& ib)
 {
     ib.bind();
     va.bind();
-    
-    
 
     m_default_shader.bind();
     

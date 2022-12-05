@@ -20,7 +20,6 @@ void bq::window::initGlfw()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	m_Window = glfwCreateWindow(m_Width, m_Height, m_Title.c_str(), NULL, NULL);
  	glfwMakeContextCurrent(m_Window);
-	glfwSwapInterval(1);
 	glewExperimental = true; // Needed for core profile
 	glewInit();
 }
