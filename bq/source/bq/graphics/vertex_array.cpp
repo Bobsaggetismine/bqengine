@@ -8,11 +8,11 @@
 
 bq::vertex_array::vertex_array()
 {
-    glGenVertexArrays(1, &m_RendererID);
+    glGenVertexArrays(1, &m_id);
 }
 bq::vertex_array::~vertex_array()
 {
-    glDeleteVertexArrays(1, &m_RendererID);
+    glDeleteVertexArrays(1, &m_id);
 }
 void bq::vertex_array::add_buffer(const vertex_buffer& vb, const bq::vertex_buffer_layout& layout)
 {
@@ -30,7 +30,7 @@ void bq::vertex_array::add_buffer(const vertex_buffer& vb, const bq::vertex_buff
 }
 void bq::vertex_array::bind() const
 {
-    glBindVertexArray(m_RendererID);
+    glBindVertexArray(m_id);
 }
 void bq::vertex_array::unbind() const
 {

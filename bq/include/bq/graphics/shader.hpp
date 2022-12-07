@@ -9,16 +9,16 @@ namespace bq {
     };
     struct shader_program_source
     {
-        std::string VertexSource;
-        std::string FragmentSource;
+        std::string vertex_source;
+        std::string fragment_source;
     };
 
     class shader
     {
     private:
         unsigned int m_id;
-        std::string m_filePath;
-        std::unordered_map<std::string, int> m_uniformCache;
+        std::string m_file_path;
+        std::unordered_map<std::string, int> m_uniform_cache;
 
     public:
         shader(const std::string& filepath);

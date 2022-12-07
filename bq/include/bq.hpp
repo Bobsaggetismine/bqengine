@@ -8,7 +8,8 @@
 #include <fstream>
 #include <unordered_map>
 #include <string>
-
+#include <memory>
+#include <functional>
 #include "bq/math/vec.hpp"
 #include "bq/graphics/texture.hpp"
 #include "bq/graphics/index_buffer.hpp"

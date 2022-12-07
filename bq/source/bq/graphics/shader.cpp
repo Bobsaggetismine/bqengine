@@ -9,12 +9,12 @@
 
 #include "bq/graphics/shader.hpp"
 
-bq::shader::shader(const std::string& filepath) : m_filePath(filepath), m_id(0)
+bq::shader::shader(const std::string& filepath) : m_file_path(filepath), m_id(0)
 {
     shader_program_source source = parse_shader(filepath);
 
 
-    m_id = create_shader(source.VertexSource, source.FragmentSource);
+    m_id = create_shader(source.vertex_source, source.fragment_source);
 
     glUseProgram(m_id);
 }
@@ -57,14 +57,14 @@ void bq::shader::set_uniform_mat4f(const std::string& name, const glm::mat4& mtx
 
 int bq::shader::get_uniform_location(const std::string& name)
 {
-    if (m_uniformCache.find(name) != m_uniformCache.end())
-        return m_uniformCache[name];
+    if (m_uniform_cache.find(name) != m_uniform_cache.end())
+        return m_uniform_cache[name];
 
     int location = glGetUniformLocation(m_id, name.c_str());
     if (location == -1)
         std::cout << "No active uniform variable with name " << name << " found" << std::endl;
 
-    m_uniformCache[name] = location;
+    m_uniform_cache[name] = location;
 
     return location;
 }

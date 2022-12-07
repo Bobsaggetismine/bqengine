@@ -8,8 +8,8 @@ namespace bq {
     private:
         unsigned int m_id;
 
-        std::string m_filePath;
-        int m_width, m_height, m_bitsPerPixel;
+        std::string m_file_path;
+        int m_width, m_height, m_bits_per_pixel;
 
     public:
         texture(const std::string& path);

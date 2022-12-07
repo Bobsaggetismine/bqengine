@@ -4,17 +4,17 @@
 
 bq::vertex_buffer::vertex_buffer(const void* data, unsigned int size)
 {
-    glGenBuffers(1, &m_RendererID);
-    glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+    glGenBuffers(1, &m_id);
+    glBindBuffer(GL_ARRAY_BUFFER, m_id);
     glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 }
 bq::vertex_buffer::~vertex_buffer()
 {
-    glDeleteBuffers(1, &m_RendererID);
+    glDeleteBuffers(1, &m_id);
 }
 void bq::vertex_buffer::bind() const
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+    glBindBuffer(GL_ARRAY_BUFFER, m_id);
 }
 void bq::vertex_buffer::unbind() const
 {

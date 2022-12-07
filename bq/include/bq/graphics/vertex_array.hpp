@@ -6,7 +6,7 @@ namespace bq {
     class BQ_API vertex_array
     {
     private:
-        unsigned int m_RendererID;
+        unsigned int m_id;
 
     public:
         vertex_array();

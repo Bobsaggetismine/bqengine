@@ -25,6 +25,6 @@ void bq::vertex_buffer_layout::push(unsigned int type, unsigned int count, unsig
 {
     vertex_buffer_element vbe = { type, count, normalized };
     //std::cout << vbe.count << " : " << vbe.normalized << " : " << vbe.type << std::endl;
-    m_Elements.push_back(vbe);
-    m_Stride += count * vertex_buffer_element::get_size_of_type(type);
+    m_elements.push_back(vbe);
+    m_stride += count * vertex_buffer_element::get_size_of_type(type);
 };
